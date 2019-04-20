@@ -5,17 +5,24 @@ void swap(int *p1, int *p2) {
     *p2 = tmp;
 }
 
+void printArray(int array[], int low, int high) {
+    for(int i=low;i<high;i++) {
+        printf("%d ", array[i]);
+    }
+}
+
 int partition(int array[], int low, int high) {
-    int i = low-1;
-    int pivot = array[high];
-    for(int j=low; j<high; j++) {
-        if (array[j]<=pivot) {
-            i++;
+    int pivot = array[low];
+    int j = low;
+    for(int i=low+1;i<=high;i++) {
+        if (array[i]<=pivot) {
+            j++;
             swap(&array[i], &array[j]);
         }
     }
-    swap(&array[i+1], &array[high]);
-    return i+1;
+    swap(&array[j], &array[low]);
+    printf("pivot: %d and it is [%d]\n", j, array[j]);
+    return j;
 }
 
 void quickSort(int array[], int low, int high) {
@@ -30,15 +37,9 @@ void quickSort(int array[], int size) {
     quickSort(array, 0, size-1);
 }
 
-void printArray(int array[], int size) {
-    for(int i=0;i<size;i++) {
-        printf("%d ", array[i]);
-    }
-}
-
 int main() {
-    int array [] = {1,2,3,4,5,6,7,8};
+    int array [] = {5,3,1,9,8,2,4,7};
     quickSort(array, sizeof(array)/sizeof(array[0]));
-    printArray(array, sizeof(array)/sizeof(array[0]));
+    printArray(array, 0, sizeof(array)/sizeof(array[0]));
     return 0;
 }
