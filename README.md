@@ -1,2 +1,3 @@
 # SortingAlgorithms
-Sorting algorithms
+* Merge sort
+* Quick sort
